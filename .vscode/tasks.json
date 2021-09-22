@@ -1,0 +1,78 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "create o",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-c",
+                "main.cpp"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "создание файла с раширением о"
+        },
+        {
+            "type": "cppbuild",
+            "label": "show sfml",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-c",
+                "main.cpp",
+                "-I",
+                "/home/ilya/Документы/cpp/sfml/SFML-2.5.1/include"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "указывает на расположение sfml",
+            "dependsOn":[
+                "create o"
+            ]
+        },
+        {
+            "type": "cppbuild",
+            "label": "bld",
+            "command": "/usr/bin/g++",
+            "args": [
+                "main.o",
+                "-o",
+                "sfml-app",
+                //-------------файлы с логикой 
+                "logic.cpp",
+                //-------------
+                "-lsfml-graphics","-lsfml-window","-lsfml-system",
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "билдит",
+            "dependsOn":[
+                "show sfml"
+            ]
+        }
+    ],
+    "version": "2.0.0"
+}
